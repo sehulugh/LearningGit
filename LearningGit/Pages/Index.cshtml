@@ -121,7 +121,7 @@
                     </div>
                 </p>
                 <p>
-                    Delete local branch (remember remot branch no longer exists)<br />
+                    fetch newly created remote branch and run previous command again to see that it is now added to the list<br />
                     <div class="card card-body bg-light">
                         <pre>git branch -d first-branch</pre>
                     </div>
@@ -129,7 +129,7 @@
                 <p>
                     Remove/prune the reference to the branch on github which you already deleted<br />
                     <div class="card card-body bg-light">
-                        <pre>git fetch -p</pre>
+                        <pre>git checkout first-remote-branch</pre>
                     </div>
                 </p>
             </div>
