@@ -1,0 +1,43 @@
+﻿@page
+@model LearningGit.Pages.Titles.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title[0].TitleOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title[0].TitleText)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Title) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleText)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.TitleID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.TitleID">Details</a> |
+                @*<a asp-page="./Delete" asp-route-id="@item.TitleID">Delete</a> |*@
+                <a asp-page="../Steps/Index" asp-route-titleId="@item.TitleID">Steps</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

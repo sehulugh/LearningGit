@@ -1,0 +1,62 @@
+﻿@page
+@model LearningGit.Pages.Steps.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Title title = ViewData["TitleData"] as Title;
+    
+    }
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" asp-route-titleId ="@title.TitleID">Create New</a>
+</p>
+<p>
+    @if (title != null)
+    {
+        @title.TitleText
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Step[0].StepOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Step[0].StepText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Step[0].StepCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Step[0].Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Step) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StepOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StepText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StepCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title.TitleID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.StepID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.StepID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.StepID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
