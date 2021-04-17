@@ -7,101 +7,34 @@
 
 
 <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    Creating New Branch Locally and pushing branch to Github
-                </a>
-            </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <p>
-                    Create and switch to branch by using the command: <br />
-                    <div class="card card-body bg-light">
-                        <pre class="well">git checkout -b first-branch</pre>
-                    </div>
 
-                </p>
-                <p>
-                    Add new branch to github after making updates and setup tracking relationship: <br />
-                    <div class="card card-body bg-light">
-                        <pre>git push -u origin first-branch</pre>
-                    </div>
-                </p>
+    @foreach (var title in Model.Title)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@title.TitleID">
+                        @title.TitleText
+                    </a>
+                </h4>
             </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                    Merge Branch locally (better to do on Github so you can create pull request)
-                </a>
-            </h4>
-        </div>
-        <div id="collapse2" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <p>
-                    Switch back to Master<br />
-                    <div class="card card-body bg-light">
-                        <pre>git checkout master</pre>
-                    </div>
-                </p>
-                <p>
-                    Check if there are any changes in master origin (Github)<br />
-                    <div class="card card-body bg-light">
-                        <pre>git pull</pre>
-                    </div>
-                </p>
-                <p>
-                    Merge with branch this, opens a vi editor that allows u to write comments b4 saving<br />
-                    <div class="card card-body bg-light">
-                        <pre>git merge first-branch</pre>
-                    </div>
-                </p>
-                <p>
-                    push changes to github<br />
-                    <div class="card card-body bg-light">
-                        <pre>git push</pre>
-                    </div>
-                </p>
+            <div id="collapse_@title.TitleID" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    @foreach (var step in title.Steps)
+                    {
+                        <p>
+                            @step.StepText <br />
+                            <div class="card card-body bg-light">
+                                <pre class="well">@step.StepCode</pre>
+                            </div>
+                        </p>
+                    }                  
+                </div>
 
             </div>
         </div>
-    </div>
+    }
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                    Deleting Local branch after creating a pull request, merging and deleting branch on github
-                </a>
-            </h4>
-        </div>
-        <div id="collapse3" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <p>
-                    View all branches (both remote and local)<br />
-                    <div class="card card-body bg-light">
-                        <pre>git branch -a</pre>
-                    </div>
-                </p>
-                <p>
-                    Delete local branch (remember remote branch no longer exists)<br />
-                    <div class="card card-body bg-light">
-                        <pre>git branch -d first-branch</pre>
-                    </div>
-                </p>
-                <p>
-                    Remove/prune the reference to the branch on github which you already deleted<br />
-                    <div class="card card-body bg-light">
-                        <pre>git fetch -p</pre>
-                    </div>
-                </p>
-            </div>
-        </div>
-    </div>
+
 </div>
+
